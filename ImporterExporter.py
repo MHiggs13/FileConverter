@@ -1,6 +1,7 @@
 import csv
 import json
 from collections import OrderedDict
+import re
 
 
 class InFileTypeException(Exception):
@@ -66,13 +67,20 @@ class Importer(object):
 
                     if 'modifier' not in heading:
                         # create dict entries with first row of csv(headings)
-                        data[heading] = value
+                        data[heading] = self.tidyValue(value)
                     else:
                         if 'name' in heading:
-                            modData["name"] = value
+                            modData["name"] = self.tidyValue(value)
                         else:
-                            modData["price"] = value
+                            # add price to modifier dict
+                            modData["price"] = self.tidyValue(value)
+
+                            # add modifier dict to list of modifiers
                             modList.append(modData)
+
+                            # reset modifier dict
+                            modData = OrderedDict()
+
                 data["modifiers"] = modList
                 jsonObjects.append(data)
 
@@ -87,6 +95,39 @@ class Importer(object):
                     count += 1
                     outFile.write(","+"\n")
             outFile.write("]")
+
+    def tidyValue(self, val):
+        """ tidies the passed in value so that the correct type will be
+        returned - string for non numeric characters, float for currency
+        and int for integers """
+        alphaPattern = '([A-Z]+|[a-z]+)'
+        integerPattern = '([0-9]+)'
+        currencyPattern = '(\-?[£$€][0-9]+(\.[0-9]+)?)'
+        if re.match(alphaPattern, val) is not None:
+            return val
+        elif re.match(integerPattern, val) is not None:
+            return int(val)
+        elif re.match(currencyPattern, val) is not None:
+            return self.stripCurrencySign(val)
+
+    def stripCurrencySign(self, val):
+        """ Removes the currency sign that prepends a number and returns a
+        float
+        if the number to be returned does not match the format of a decimal
+        number, -999999 is returned as an error"""
+        decimalChars = '-0123456789.'
+        decimalPattern = '(\-?[0-9]+(\.[0-9]+)?)'
+        number = ''
+        for c in val:
+            if c not in decimalChars:
+                pass
+            else:
+                number += c
+
+        if re.match(decimalPattern, number) is not None:
+            return float(number)
+        else:
+            return -999999
 
     def work(self, fileName, inType, outType):
         """ reads in a file of fileName that is of format inType.
