@@ -23,7 +23,7 @@
 {
     "item id": 111784,
     "description": "Delivery",
-    "price": null,
+    "price": "",
     "price_type": "open",
     "modifiers": []
 },
@@ -45,7 +45,7 @@
     "item id": 2847224,
     "description": "Orange Juice 48",
     "price": 68.57,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": [
@@ -76,7 +76,7 @@
     "item id": 2847226,
     "description": "Ciabatta 50",
     "price": 71.43,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -85,7 +85,7 @@
     "item id": 2847227,
     "description": "baguette 51",
     "price": 0.0,
-    "cost": null,
+    "cost": "",
     "price_type": "open",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -94,7 +94,7 @@
     "item id": 2847228,
     "description": "Sour Dough Boule 52",
     "price": 74.29,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -103,7 +103,7 @@
     "item id": 2847244,
     "description": "Whole Coffee Cake 68",
     "price": 0.0,
-    "cost": null,
+    "cost": "",
     "price_type": "open",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -112,7 +112,7 @@
     "item id": 2847229,
     "description": "Country Wht Boule 53",
     "price": 75.71,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -121,7 +121,7 @@
     "item id": 2847230,
     "description": "Semolina Batard 54",
     "price": 77.14,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -130,7 +130,7 @@
     "item id": 2847231,
     "description": "Multigrain Batard 55",
     "price": 78.57,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": []
@@ -148,13 +148,13 @@
     "item id": 2847233,
     "description": "Rolls 57",
     "price": 81.43,
-    "cost": null,
+    "cost": "",
     "price_type": "system",
     "quantity_on_hand": 0,
     "modifiers": [
         {
             "name": "Jelly",
-            "price": null
+            "price": "$.75"
         },
         {
             "name": "Peanut Butter",
